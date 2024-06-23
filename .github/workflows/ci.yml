@@ -1,23 +1,31 @@
-name: Website
+name: CI
 on:
   push:
     branches:
       - master
+
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 14
+          node-version: 20
+          registry-url: 'https://registry.npmjs.org'
 
-      - run: mkdir -p build
-      - run: npm i markdown-to-html-cli -g
-      - run: markdown-to-html --output build/index.html
+      - run: npm install
+      - run: npm run build
+
+      - name: Generate Contributors Images
+        uses: jaywcjlove/github-action-contributors@main
+        with:
+          filter-author: (renovate\[bot\]|renovate-bot|dependabot\[bot\])
+          output: dist/CONTRIBUTORS.svg
+          avatarSize: 42
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
+          publish_dir: ./dist

@@ -1,15 +1,21 @@
+<!--idoc:ignore:start-->
 Git Tips
 ===
+<!--idoc:ignore:end-->
 
+[![Buy me a coffee](https://img.shields.io/badge/Buy%20me%20a%20coffee-048754?logo=buymeacoffee)](https://jaywcjlove.github.io/#/sponsor)
 [![Gitee Tips](https://jaywcjlove.github.io/sb/ico/gitee.svg)](https://jaywcjlove.gitee.io/git-tips/)
+[![CI](https://github.com/jaywcjlove/git-tips/actions/workflows/ci.yml/badge.svg)](https://github.com/jaywcjlove/git-tips/actions/workflows/ci.yml)
 
 一些使用技巧和笔记笔记，记录一些 git 常用和一些记不住的命令，这个笔记原本是基于 [颜海镜的文章](http://yanhaijing.com/git/2014/11/01/my-git-note)增加的，后面慢慢增加了许多内容，独立一个仓库维护，方便查询和使用。
 
+<!--idoc:ignore:start-->
 目录
 ===
 
 <!-- TOC -->
 
+- [入门备忘清单](./cheatsheet.md)
 - [安装卸载](#安装卸载)
 - [配置管理](#配置管理)
 - [不常见的使用场景](#不常见的使用场景)
@@ -97,6 +103,7 @@ Git Tips
 - [参考资料](#参考资料)
 
 <!-- /TOC -->
+<!--idoc:ignore:end-->
 
 ## 安装卸载
 
@@ -1113,6 +1120,12 @@ git pull --recurse-submodules
 git submodule deinit --all -f # 清理 submodule
 ```
 
+```bash
+git clone --recurse-submodules --depth=1 --shallow-submodules https://github.com/example/project.git
+# --depth 选项限制拉取历史记录的数量，以减少克隆所需的时间和空间
+# --shallow-submodules 则限制子模块拉取的历史记录数量，这两者的结合可以在 Git 项目中只拉取代码
+```
+
 ### 删除 submodule
 
 ```bash
@@ -1353,3 +1366,17 @@ sudo chown -R yourname:yourgroup *
 - [Git进阶用法，主要是rebase高级用法](http://way.oschina.io/2016/12/15/notes/GitAdvance/?utm_source=gank.io&utm_medium=email)
 - [成为一个git大师](https://www.atlassian.com/git/tutorials)
 - [高质量的Git中文教程](https://github.com/geeeeeeeeek/git-recipes)
+
+## Contributors
+
+As always, thanks to our amazing contributors!
+
+<a href="https://github.com/jaywcjlove/git-tips/graphs/contributors">
+  <img src="https://jaywcjlove.github.io/git-tips/CONTRIBUTORS.svg" />
+</a>
+
+Made with [action-contributors](https://github.com/jaywcjlove/github-action-contributors).
+
+## License
+
+MIT © [Kenny Wong](https://github.com/jaywcjlove)
